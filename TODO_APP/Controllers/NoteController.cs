@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace TODO_APP.Controllers
+namespace TODO_APP.Web.Controllers
 {
     public class NoteController : Controller
     {
