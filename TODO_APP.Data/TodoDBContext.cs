@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using TODO_APP.Core.Model;
 
 namespace TODO_APP.Data
 {
@@ -13,5 +9,8 @@ namespace TODO_APP.Data
         {
 
         }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Note> Notes { get; set; }
     }
 }
