@@ -1,0 +1,28 @@
+@model IEnumerable<TODO_APP.Core.Model.Note>
+
+<h2>Список нотаток</h2>
+<a asp-action="Create" class="btn btn-primary">Створити нову нотатку</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Заголовок</th>
+            <th>Опис</th>
+            <th>Дії</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var note in Model)
+    {
+        <tr>
+            <td>@note.Title</td>
+            <td>@note.Description</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@note.Id">Деталі</a> |
+                <a asp-action="Edit" asp-route-id="@note.Id">Редагувати</a> |
+                <a asp-action="Delete" asp-route-id="@note.Id">Видалити</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
