@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TODO_APP.Core\TODO_APP.Core.csproj" />
     <ProjectReference Include="..\TODO_APP.Data\TODO_APP.Data.csproj" />
     <ProjectReference Include="..\TODO_APP.Service\TODO_APP.Service.csproj" />
