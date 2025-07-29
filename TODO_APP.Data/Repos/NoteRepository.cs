@@ -13,7 +13,7 @@ namespace TODO_APP.Data.Repos
             _context = context;
         }
 
-        public async Task<Note> GetByIdAsync(int id)
+        public async Task<Note?> GetByIdAsync(int id)
         {
             return await _context.Notes.FindAsync(id) ?? throw new Exception("Note not found");
         }
@@ -26,6 +26,7 @@ namespace TODO_APP.Data.Repos
         public async Task AddAsync(Note note)
         {
             await _context.Notes.AddAsync(note);
+            await _context.SaveChangesAsync();
         }
 
         public void Update(Note note)
