@@ -15,7 +15,7 @@ namespace TODO_APP.Web.Controllers
             _noteService = noteService;
         }
 
-        [HttpGet]
+        [HttpGet("")]
         public async Task<IActionResult> Index()
         {
             var notes = await _noteService.GetAllAsync();
@@ -37,7 +37,10 @@ namespace TODO_APP.Web.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return View(new CreateNoteDto
+            {
+                UserId = new Guid("11111111-1111-1111-1111-111111111111") // тимчасово
+            });
         }
 
         [HttpPost]
@@ -50,7 +53,7 @@ namespace TODO_APP.Web.Controllers
                     Title = noteDto.Title,
                     Description = noteDto.Description,
                     UserId = noteDto.UserId,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.UtcNow
                 };
                 await _noteService.AddAsync(note);
                 return RedirectToAction(nameof(Index));
