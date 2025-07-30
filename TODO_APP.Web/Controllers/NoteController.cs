@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TODO_APP.Service.Interfaces;
 using TODO_APP.Core.Model;
-using TODO_APP.Web.DTO;
+using TODO_APP.Service.DTO;
 using System.Data;
 
 namespace TODO_APP.Web.Controllers
@@ -47,18 +47,18 @@ namespace TODO_APP.Web.Controllers
         public async Task<IActionResult> Create(CreateNoteDto noteDto)
         {
             if (ModelState.IsValid)
+                return View(noteDto);
+            
+            try
             {
-                var note = new Note
-                {
-                    Title = noteDto.Title,
-                    Description = noteDto.Description,
-                    UserId = noteDto.UserId,
-                    CreatedAt = DateTime.UtcNow
-                };
-                await _noteService.AddAsync(note);
+                await _noteService.AddAsync(noteDto);
                 return RedirectToAction(nameof(Index));
             }
-            return View(noteDto);
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex);
+                return View(noteDto);
+            }
         }
 
         [HttpGet]

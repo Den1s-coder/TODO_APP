@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.SignalR;
 
-namespace TODO_APP.Web.DTO
+namespace TODO_APP.Service.DTO
 {
     public class CreateNoteDto
     {
