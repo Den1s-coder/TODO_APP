@@ -1,4 +1,5 @@
 using TODO_APP.Core.Model;
+using TODO_APP.Service.DTO;
 
 namespace TODO_APP.Service.Interfaces
 {
@@ -6,7 +7,7 @@ namespace TODO_APP.Service.Interfaces
     {
         Task<Note> GetByIdAsync(int id);
         Task<IEnumerable<Note>> GetAllAsync();
-        Task AddAsync(Note note);
+        Task AddAsync(CreateNoteDto noteDto);
         void Update(Note note);
         void Delete(Note note);
     }
