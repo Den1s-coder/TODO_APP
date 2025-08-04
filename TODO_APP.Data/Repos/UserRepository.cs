@@ -26,7 +26,7 @@ namespace TODO_APP.Data.Repos
 
         public async Task Register(RegisterRequest request)
         {
-            var user = new User(request.Username, request.Email, request.Password);
+            var user = new User(request.Username, request.Email);
             await _context.Users.AddAsync(user);
         }
         //TODO: Implement login logic
