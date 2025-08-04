@@ -3,16 +3,19 @@ using TODO_APP.Service.Interfaces;
 using TODO_APP.Core.Model;
 using TODO_APP.Service.DTO;
 using System.Data;
+using TODO_APP.Service.Services;
 
 namespace TODO_APP.Web.Controllers
 {
     public class NoteController : Controller
     {
         private readonly INoteService _noteService;
+        private readonly IAuthService _authService;
 
-        public NoteController(INoteService noteService)
+        public NoteController(INoteService noteService, IAuthService authService)
         {
             _noteService = noteService;
+            _authService = authService;
         }
 
         [HttpGet("")]
@@ -35,18 +38,24 @@ namespace TODO_APP.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var currentUser = await _authService.GetCurrentUserAsync();
+            if (currentUser == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
             return View(new CreateNoteDto
             {
-                UserId = new Guid("11111111-1111-1111-1111-111111111111") // тимчасово
+                UserId = currentUser.Id
             });
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateNoteDto noteDto)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return View(noteDto);
             
             try

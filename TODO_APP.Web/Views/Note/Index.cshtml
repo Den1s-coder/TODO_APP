@@ -1,28 +1,89 @@
 @model IEnumerable<TODO_APP.Core.Model.Note>
 
 <h2>Список нотаток</h2>
-<a asp-action="Create" class="btn btn-primary">Створити нову нотатку</a>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Заголовок</th>
-            <th>Опис</th>
-            <th>Дії</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var note in Model)
-    {
-        <tr>
-            <td>@note.Title</td>
-            <td>@note.Description</td>
-            <td>
-                <a asp-action="Details" asp-route-id="@note.Id">Деталі</a> |
-                <a asp-action="Edit" asp-route-id="@note.Id">Редагувати</a> |
-                <a asp-action="Delete" asp-route-id="@note.Id">Видалити</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
 
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-action="Create" class="btn btn-primary">Створити нову нотатку</a>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Заголовок</th>
+                    <th>Опис</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var note in Model)
+                {
+                    <tr>
+                        <td>@note.Title</td>
+                        <td>@note.Description</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@note.Id">Деталі</a> |
+                            <a asp-action="Edit" asp-route-id="@note.Id">Редагувати</a> |
+                            <a asp-action="Delete" asp-route-id="@note.Id">Видалити</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <p>У вас поки немає нотаток. Створіть першу нотатку!</p>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-warning">
+        <h4>Для роботи з нотатками потрібна авторизація</h4>
+        <p>Щоб створювати та керувати нотатками, будь ласка:</p>
+        <div class="mt-3">
+            <a asp-controller="Auth" asp-action="Login" class="btn btn-primary me-2">
+                <i class="fas fa-sign-in-alt"></i> Увійти
+            </a>
+            <a asp-controller="Auth" asp-action="Register" class="btn btn-success">
+                <i class="fas fa-user-plus"></i> Зареєструватися
+            </a>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Переваги реєстрації:</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success"></i> Створювати особисті нотатки</li>
+                        <li><i class="fas fa-check text-success"></i> Редагувати та видаляти нотатки</li>
+                        <li><i class="fas fa-check text-success"></i> Безпечне зберігання даних</li>
+                        <li><i class="fas fa-check text-success"></i> Доступ з будь-якого пристрою</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Швидкий старт:</h5>
+                </div>
+                <div class="card-body">
+                    <p>Реєстрація займає всього кілька секунд. Вам потрібно лише:</p>
+                    <ol>
+                        <li>Ввести ім'я та email</li>
+                        <li>Створити пароль</li>
+                        <li>Почати створювати нотатки!</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+}

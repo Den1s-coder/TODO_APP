@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TODO_APP.Data;
@@ -11,9 +12,11 @@ using TODO_APP.Data;
 namespace TODO_APP.Data.Migrations
 {
     [DbContext(typeof(TodoDBContext))]
-    partial class TodoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250804084801_InitIdentityUpdate")]
+    partial class InitIdentityUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -31,6 +31,32 @@
                     </ul>
                 </div>
             </div>
+            <ul class="navbar-nav">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Auth" asp-action="Profile">
+                            <i class="fas fa-user"></i> @User.Identity.Name
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <form asp-controller="Auth" asp-action="Logout" method="post" style="display: inline;">
+                            <button type="submit" class="btn btn-link nav-link text-dark">
+                                <i class="fas fa-sign-out-alt"></i> Вийти
+                            </button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Auth" asp-action="Login">Увійти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Auth" asp-action="Register">Реєстрація</a>
+                    </li>
+                }
+            </ul>
         </nav>
     </header>
     <div class="container">

@@ -113,6 +113,8 @@ namespace TODO_APP.Service.Services
             }
 
             var user = new User(registerDto.Name,registerDto.Email);
+            user.UserName = registerDto.Email; 
+
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
             if (!result.Succeeded) 
