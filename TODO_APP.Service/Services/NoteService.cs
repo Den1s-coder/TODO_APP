@@ -11,9 +11,10 @@ namespace TODO_APP.Service
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
 
-        public NoteService(IUnitOfWork uow)
+        public NoteService(IUnitOfWork uow, IMapper mapper)
         {
             _uow = uow;
+            _mapper = mapper;
         }
 
         public async Task<Note> GetByIdAsync(int id)

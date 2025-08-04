@@ -7,15 +7,15 @@ namespace TODO_APP.Core.Model
         public string Name { get; set; }
         public string Role { get; set; } = "User";
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public bool IsActive { get; set; }
 
         public User() { } // for EF
 
-        public User(string name, string email, string password)
+        public User(string name, string email)
         {
             Id = Guid.NewGuid();
             Name = name;
             Email = email;
-            PasswordHash = password;
             Role = "User";
             CreatedAt = DateTime.UtcNow;
         }
