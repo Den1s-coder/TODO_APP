@@ -58,7 +58,7 @@ namespace TODO_APP.Service.Services
 
         public async Task<UserDto> LoginAsync(LoginDto loginDto)
         {
-            if (string.IsNullOrEmpty(loginDto.Email) || string.IsNullOrEmpty(loginDto.password)) 
+            if (string.IsNullOrEmpty(loginDto.Email) || string.IsNullOrEmpty(loginDto.Password)) 
             {
                 throw new ArgumentException("Email and password are required.");
             }
@@ -74,7 +74,7 @@ namespace TODO_APP.Service.Services
                 throw new ArgumentException("Account deactivated.");
             }
 
-            var result = await _signInManager.PasswordSignInAsync(user, loginDto.password,loginDto.RememberMe, lockoutOnFailure: false);
+            var result = await _signInManager.PasswordSignInAsync(user, loginDto.Password,loginDto.RememberMe, lockoutOnFailure: false);
             if (!result.Succeeded) 
             {
                 throw new ArgumentException("Invalid password.");

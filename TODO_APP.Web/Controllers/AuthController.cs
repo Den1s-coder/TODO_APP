@@ -70,7 +70,7 @@ namespace TODO_APP.Web.Controllers
                 var loginDto = new LoginDto
                 {
                     Email = registerDto.Email,
-                    password = registerDto.Password,
+                    Password = registerDto.Password,
                     RememberMe = false
                 };
 
