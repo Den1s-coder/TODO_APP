@@ -33,7 +33,7 @@ namespace TODO_APP.Data
                 entity.Property(e => e.Description).HasMaxLength(2000);
                 entity.Property(e => e.CreatedAt).IsRequired();
 
-                entity.HasOne<User>()
+                entity.HasOne(e => e.User)
                     .WithMany()
                     .HasForeignKey(e => e.UserId)
                     .OnDelete(DeleteBehavior.Cascade);
