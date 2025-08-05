@@ -38,5 +38,10 @@ namespace TODO_APP.Data.Repos
         {
             _context.Notes.Remove(note);
         }
+
+        public async Task<IEnumerable<Note>> GetUserNotesAsync(Guid UserId)
+        {
+            return await _context.Notes.Where(x => x.UserId == UserId).ToListAsync();
+        }
     }
 }
