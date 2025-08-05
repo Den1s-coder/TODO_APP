@@ -21,7 +21,9 @@ namespace TODO_APP.Web.Controllers
         [HttpGet("")]
         public async Task<IActionResult> Index()
         {
-            var notes = await _noteService.GetAllAsync();
+            var currentUser = await _authService.GetCurrentUserAsync();
+
+            var notes = await _noteService.GetUserNotesAsync(currentUser.Id);
             return View(notes);
         }
 
