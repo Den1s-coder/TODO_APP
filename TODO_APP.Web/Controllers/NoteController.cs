@@ -23,6 +23,11 @@ namespace TODO_APP.Web.Controllers
         {
             var currentUser = await _authService.GetCurrentUserAsync();
 
+            if (currentUser == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
             var notes = await _noteService.GetUserNotesAsync(currentUser.Id);
             return View(notes);
         }
