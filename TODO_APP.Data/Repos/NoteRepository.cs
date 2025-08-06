@@ -29,14 +29,16 @@ namespace TODO_APP.Data.Repos
             await _context.SaveChangesAsync();
         }
 
-        public void Update(Note note)
+        public async Task Update(Note note)
         {
             _context.Notes.Update(note);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(Note note)
+        public async Task Delete(Note note)
         {
             _context.Notes.Remove(note);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Note>> GetUserNotesAsync(Guid UserId)

@@ -9,7 +9,7 @@ namespace TODO_APP.Service.Interfaces
         Task<IEnumerable<Note>> GetAllAsync();
         Task<IEnumerable<Note>> GetUserNotesAsync(Guid id);
         Task AddAsync(CreateNoteDto noteDto);
-        void Update(UpdateNoteDto noteDto);
-        void Delete(Note note);
+        Task Update(UpdateNoteDto noteDto);
+        Task Delete(Note note);
     }
 }
