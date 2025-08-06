@@ -30,24 +30,29 @@ namespace TODO_APP.Service
             return await _uow.Notes.GetAllAsync();
         }
 
-        public async Task AddAsync(CreateNoteDto noteDto)
+        public async Task AddAsync(CreateNoteDto CreateNoteDto)
         {
-            if (noteDto == null)
-                throw new ArgumentNullException(nameof(noteDto));
+            if (CreateNoteDto == null)
+                throw new ArgumentNullException(nameof(CreateNoteDto));
 
-            var note = _mapper.Map<Note>(noteDto);
+            var note = _mapper.Map<Note>(CreateNoteDto);
 
             await _uow.Notes.AddAsync(note);
         }
 
-        public void Update(Note note)
+        public async Task Update(UpdateNoteDto UpdateNoteDto)
         {
-            _uow.Notes.Update(note);
+            if (UpdateNoteDto == null)
+                throw new ArgumentNullException(nameof(UpdateNoteDto));
+
+            var note = _mapper.Map<Note>(UpdateNoteDto);
+
+            await _uow.Notes.Update(note);
         }
 
-        public void Delete(Note note)
+        public async Task Delete(Note note)
         {
-            _uow.Notes.Delete(note);
+            await _uow.Notes.Delete(note);
         }
 
         public async Task<IEnumerable<Note>> GetUserNotesAsync(Guid id)
