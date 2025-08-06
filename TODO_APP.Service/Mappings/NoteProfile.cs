@@ -9,6 +9,7 @@ namespace TODO_APP.Service.Mappings
         public NoteProfile() 
         {
             CreateMap<CreateNoteDto,Note>();
+            CreateMap<UpdateNoteDto,Note>();
         }
     }
 }
