@@ -77,6 +77,39 @@ namespace TODO_APP.Web.Controllers
             }
         }
 
+        [HttpGet("Edit/{id}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var note = await _noteService.GetByIdAsync(id);
+            if (note == null) return NotFound();
+
+            return View(new UpdateNoteDto
+            {
+                Id = note.Id,
+                Title = note.Title,
+                Description = note.Description,
+                
+            });
+        }
+
+        [HttpPost("Edit/{id}")]
+        public async Task<IActionResult> Edit(UpdateNoteDto updateNote)
+        {
+            var user = await _authService.GetCurrentUserAsync();
+            updateNote.UserId = user.Id;
+
+            try
+            {
+                await _noteService.Update(updateNote);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return View(updateNote);
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -91,7 +124,7 @@ namespace TODO_APP.Web.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var note = await _noteService.GetByIdAsync(id);
-            if (note != null) _noteService.Delete(note);
+            if (note != null) await _noteService.Delete(note);
             return RedirectToAction(nameof(Index));
         }
     }
