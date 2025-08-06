@@ -8,7 +8,7 @@ namespace TODO_APP.Data.Repos.Interfaces
         Task<IEnumerable<Note>> GetAllAsync();
         Task<IEnumerable<Note>> GetUserNotesAsync(Guid id);
         Task AddAsync(Note note);
-        void Update(Note note);
-        void Delete(Note note);
+        Task Update(Note note);
+        Task Delete(Note note);
     }
 }
