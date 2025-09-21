@@ -83,8 +83,6 @@ dotnet ef database update
 dotnet run
 ```
 
-The application will be available at: `https://localhost:5001`
-
 ## 📁 Project Structure
 
 ```
@@ -141,36 +139,7 @@ TODO_APP/
 - **Delete** tasks
 - **Detailed view** of tasks
 
-## 🚀 Deployment
-
-### Development
-```bash
-dotnet run --project TODO_APP.Web
-```
-
-### Production
-```bash
-dotnet publish -c Release -o ./publish
-cd publish
-dotnet TODO_APP.Web.dll
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
 ## 📝 License
 
 This project is distributed under the MIT License. See the `LICENSE` file for details.
 
-## 👨‍💻 Author
-
-TODO App - created to demonstrate ASP.NET Core and Clean Architecture capabilities.
-
----
-
-**Note**: This README contains basic project information. For detailed API documentation or additional configuration, refer to the relevant code sections.
